@@ -1,0 +1,26 @@
+[package]
+name        = "ferrox"
+version     = "0.1.0"
+edition     = "2021"
+authors     = ["anoopjohn-dev"]
+description = "Async bare-metal OS kernel for RISC-V"
+license     = "Apache-2.0"
+
+[lib]
+crate-type  = ["staticlib"]
+
+[[bin]]
+name = "ferrox"
+path = "src/main.rs"
+
+[dependencies]
+# No external crates — truly no_std
+
+[profile.release]
+opt-level   = "z"
+lto         = true
+panic       = "abort"
+codegen-units = 1
+
+[profile.dev]
+panic       = "abort"
